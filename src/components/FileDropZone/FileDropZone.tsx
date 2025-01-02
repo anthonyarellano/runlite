@@ -39,13 +39,14 @@ const styles = stylex.create({
 export default function FileDropZone() {
   const router = useRouter();
   const { notifySuccess, notifyFailure } = useNotification();
-  const { setValidFileAvailable, setName, setMetricType } = useRunTrackingStore(
+  const { setValidFileAvailable, setName, setMetricType, initializeFromFile } = useRunTrackingStore(
     (state) => state
   );
 
   const onDrop = React.useCallback(
     (acceptedFiles: DropzoneFile[]) => {
       const [acceptedFile] = acceptedFiles;
+      initializeFromFile(acceptedFile as File);
       validateUserFile(acceptedFile)
         .then((data) => {
           if (data.userFile && data.isValid) {
