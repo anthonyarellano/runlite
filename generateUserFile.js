@@ -15,10 +15,10 @@ const generateShoe = (id) => ({
     createdAt: new Date().toISOString(),
 });
 
-// Function to create a new file with 1000 shoes
+// Function to create a new file with shoes
 const createFile = () => {
     try {
-        // Generate 1000 shoe objects
+        // Generate shoe objects
         const shoes = [];
         for (let i = 0; i < 100000; i++) {
             const newShoeId = `shoe-${Date.now()}-${i}`;
