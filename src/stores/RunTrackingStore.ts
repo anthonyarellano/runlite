@@ -74,9 +74,9 @@ export const createRunTrackingStore = (
           const text = await chunk.text();
           buffer += text;
     
-          if (!inShoesArray && buffer.includes('"shoes":')) {
+          if (!inShoesArray && buffer.includes(SHOES_ARRAY_BUFFER)) {
             inShoesArray = true;
-            const arrayStart = buffer.indexOf('[', buffer.indexOf('"shoes":'));
+            const arrayStart = buffer.indexOf('[', buffer.indexOf(SHOES_ARRAY_BUFFER));
             contentPosition = offset + arrayStart;
             buffer = buffer.slice(arrayStart);
           }
