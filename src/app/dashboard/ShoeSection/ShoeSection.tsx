@@ -15,7 +15,7 @@ export default function ShoeSection() {
   const getShoeData = useRunTrackingStore((state) => state.getShoeData);
   const [modalOpen, setModalOpen] = React.useState(false);
 
-  getShoeData("1234").then((data) => console.log(data));
+  // getShoeData("shoe-1736026133297-99999").then((data) => console.log(data));
 
   return (
     <Card backgroundColor={ThemeColors.PRIMARY}>
