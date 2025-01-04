@@ -121,7 +121,7 @@ export const createRunTrackingStore = (
     
           offset += DEFAULT_CHUNK_SIZE;
         }
-    
+
         set({ shoeIndex, originalFile: file });
       } finally {
         set({ isLoading: false });
