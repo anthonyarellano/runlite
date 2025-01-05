@@ -61,9 +61,8 @@ export const createRunTrackingStore = (
     initializeFromFile: async (file: File) => {
       set({ isIndexLoading: true });
       try {
-        const indexer = new JsonIndexer<ShoeMetadata>(file, 'shoes', ['name']);
-        const shoeIndex = await indexer.index();
-
+        const indexer = new JsonIndexer(file);
+        const shoeIndex = await indexer.index<ShoeMetadata>('shoes', ['name']);
         set({ shoeIndex, originalFile: file });
       } finally {
         set({ isIndexLoading: false });
