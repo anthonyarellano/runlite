@@ -23,7 +23,7 @@ export type RunTrackingActions = {
   setMetricType: (metricType: MetricType) => void;
   setShoes: (shoes: Shoe[]) => void;
   addShoe: (shoe: Shoe) => void;
-  initializeFromFile: (file: File) => Promise<void>;
+  indexFromFile: (file: File) => Promise<void>;
   getShoeData: (id: string) => Promise<Shoe | null>;
 };
 
@@ -58,7 +58,7 @@ export const createRunTrackingStore = (
 ) => {
   return createStore<RunTrackingStore>((set, get) => ({
     ...initState,
-    initializeFromFile: async (file: File) => {
+    indexFromFile: async (file: File) => {
       set({ isIndexLoading: true });
       try {
         const indexer = new JsonIndexer(file);

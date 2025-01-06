@@ -1,13 +1,13 @@
 import React from "react";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
-import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
-import { useDropzone } from "react-dropzone";
-import { validateUserFile } from "~/utils/validateUserFile";
-import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
-import { useNotification } from "~/providers/NotificationProvider";
-import { useRouter } from "next/navigation";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { AppRoute } from "~/types/AppRoute/AppRoute";
+import { useRouter } from "next/navigation";
+import { useDropzone } from "react-dropzone";
+import { useNotification } from "~/providers/NotificationProvider";
+import { validateUserFile } from "~/utils/validateUserFile";
+import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
+import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 
 const pulse = stylex.keyframes({
   "0%": { borderColor: "#fef08a", color: "#fef08a" },
@@ -39,24 +39,23 @@ const styles = stylex.create({
 export default function FileDropZone() {
   const router = useRouter();
   const { notifySuccess, notifyFailure } = useNotification();
-  const { setValidFileAvailable, setName, setMetricType, initializeFromFile } = useRunTrackingStore(
+  const { setValidFileAvailable, setName, setMetricType, indexFromFile } = useRunTrackingStore(
     (state) => state
   );
 
   const onDrop = React.useCallback(
     (acceptedFiles: DropzoneFile[]) => {
       const [acceptedFile] = acceptedFiles;
-      initializeFromFile(acceptedFile as File);
       validateUserFile(acceptedFile)
         .then((data) => {
           if (data.userFile && data.isValid) {
-            // If UserFile is valid, set to in memory state
+            // If user file is valid, index data for efficient lookups later
+            indexFromFile(acceptedFile as File);
             setValidFileAvailable(data.isValid);
             setName(data.userFile.name);
             setMetricType(data.userFile.metricType);
             notifySuccess("File successfully validated");
             router.push(AppRoute.DASHBOARD);
-            // TODO: When Shoe and Run data is available, set in memory state
           }
         })
         .catch((error: Error) => {
