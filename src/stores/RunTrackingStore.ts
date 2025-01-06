@@ -1,6 +1,7 @@
-import { createStore } from "zustand/vanilla";
 import { MetricType } from "~/types/MetricType/MetricType";
-import { Shoe } from "~/types/Shoe/Shoe";
+import { createStore } from "zustand/vanilla";
+import { JsonIndexer } from "json-indexer";
+import { type Shoe, type ShoeMetadata } from "~/types/Shoe/Shoe";
 
 export type RunTrackingState = {
   fileDownload: string;
@@ -9,6 +10,9 @@ export type RunTrackingState = {
   name: string;
   metricType: MetricType;
   shoes: Shoe[];
+  shoeIndex: Map<string, ShoeMetadata>;
+  originalFile: File | null;
+  isIndexLoading: boolean;
 };
 
 export type RunTrackingActions = {
@@ -19,6 +23,8 @@ export type RunTrackingActions = {
   setMetricType: (metricType: MetricType) => void;
   setShoes: (shoes: Shoe[]) => void;
   addShoe: (shoe: Shoe) => void;
+  indexFromFile: (file: File) => Promise<void>;
+  getShoeData: (id: string) => Promise<Shoe | null>;
 };
 
 export type RunTrackingStore = RunTrackingState & RunTrackingActions;
@@ -30,6 +36,9 @@ export const initRunTrackingStore = (): RunTrackingState => ({
   name: "",
   metricType: MetricType.MI,
   shoes: [],
+  shoeIndex: new Map(),
+  originalFile: null,
+  isIndexLoading: false,
 });
 
 export const defaultInitState: RunTrackingState = {
@@ -39,13 +48,44 @@ export const defaultInitState: RunTrackingState = {
   name: "",
   metricType: MetricType.MI,
   shoes: [],
+  shoeIndex: new Map(),
+  originalFile: null,
+  isIndexLoading: false
 };
 
 export const createRunTrackingStore = (
   initState: RunTrackingState = defaultInitState
 ) => {
-  return createStore<RunTrackingStore>((set) => ({
+  return createStore<RunTrackingStore>((set, get) => ({
     ...initState,
+    indexFromFile: async (file: File) => {
+      set({ isIndexLoading: true });
+      try {
+        const indexer = new JsonIndexer(file);
+        const shoeIndex = await indexer.index<ShoeMetadata>('shoes', ['name']);
+        set({ shoeIndex, originalFile: file });
+      } finally {
+        set({ isIndexLoading: false });
+      }
+    },
+    getShoeData: async (id: string) => {
+      const { shoeIndex, originalFile } = get();
+      if (!originalFile) return null;
+
+      const metadata = shoeIndex.get(id);
+      if (!metadata) return null;
+
+      try {
+        const chunk = originalFile.slice(
+          metadata.filePosition,
+          metadata.filePosition + metadata.length
+        )
+        return JSON.parse(await chunk.text()) as Shoe;
+      } catch (e) {
+        console.error('Failed to load shoe data:', e);
+        return null;
+      }
+    },
     setFileDownload: (href: string) =>
       set((state) => ({
         ...state,

@@ -1,8 +1,8 @@
+import { MetricType } from "~/types/MetricType/MetricType";
 import { type UserFile } from "~/types/UserFile/UserFile";
-import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 import { ErrorMessages } from "~/types/Error/ErrorMessages";
 import { parseJSONFile } from "./parseJSONFile";
-import { MetricType } from "~/types/MetricType/MetricType";
+import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 
 const hasOwnPropertyCb = (obj: Partial<UserFile>) => {
   return (key: string) => obj.hasOwnProperty(key);
@@ -57,8 +57,25 @@ export const validateUserFile = async (
     if (!check("metricType")) {
       throw new Error(ErrorMessages.METRIC_TYPE_MISSING);
     }
+    // Shoe validation
+    if (check("shoes")) {
+      fileJSON.shoes?.forEach((shoe) => {
+        const checkShoe = hasOwnPropertyCb(shoe);
+        if (!checkShoe('id')) {
+          throw new Error(ErrorMessages.SHOE_ID_MISSING);
+        }
+        if (!checkShoe('name')) {
+          throw new Error(ErrorMessages.SHOE_NAME_MISSING);
+        }
+        if (!checkShoe('distance')) {
+          throw new Error(ErrorMessages.SHOE_DISTANCE_MISSING)
+        }
+        if (checkShoe('distance') && shoe.distance < 0) {
+          throw new Error(ErrorMessages.SHOE_DISTANCE_NEGATIVE)
+        }
+      })
+    }
 
-    // TODO: Add validations for -> Shoe
     // TODO: Add validations for -> Runs
     // TODO: Return valid user file
     return { isValid: true, userFile: fileJSON as UserFile };

@@ -1,6 +1,13 @@
 {
     "name": "Anthony Arellano",
     "metricType": "mi",
-    "shoes": [],
+    "shoes": [
+        {
+            "id": "1234",
+            "name": "On Cloudmonster 2",
+            "distance": 10,
+            "createdAt": "2024-01-15T08:30:45Z"
+        }
+    ],
     "runs": []
 }

@@ -12,7 +12,11 @@ import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 export default function ShoeSection() {
   const shoes = useRunTrackingStore((state) => state.shoes);
   const metricType = useRunTrackingStore((state) => state.metricType);
+  // const getShoeData = useRunTrackingStore((state) => state.getShoeData);
   const [modalOpen, setModalOpen] = React.useState(false);
+
+  // getShoeData("shoe-1736026133297-99999").then((data) => console.log(data));
+
   return (
     <Card backgroundColor={ThemeColors.PRIMARY}>
       <AddShoeModal open={modalOpen} onClose={() => setModalOpen(false)} />
