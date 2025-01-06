@@ -1,7 +1,7 @@
-import { createStore } from "zustand/vanilla";
 import { MetricType } from "~/types/MetricType/MetricType";
-import { Shoe, ShoeMetadata } from "~/types/Shoe/Shoe";
+import { createStore } from "zustand/vanilla";
 import { JsonIndexer } from "json-indexer";
+import { type Shoe, type ShoeMetadata } from "~/types/Shoe/Shoe";
 
 export type RunTrackingState = {
   fileDownload: string;
@@ -80,7 +80,7 @@ export const createRunTrackingStore = (
           metadata.filePosition,
           metadata.filePosition + metadata.length
         )
-        return JSON.parse(await chunk.text());
+        return JSON.parse(await chunk.text()) as Shoe;
       } catch (e) {
         console.error('Failed to load shoe data:', e);
         return null;

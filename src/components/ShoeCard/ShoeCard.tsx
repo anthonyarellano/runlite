@@ -3,9 +3,9 @@ import Card from "../Card/Card";
 import Stack from "../Stack/Stack";
 import CardTitle from "../Card/CardTitle";
 import RunningShoe from "../Icons/RunningShoe";
-import { Shoe } from "~/types/Shoe/Shoe";
-import { MetricType } from "~/types/MetricType/MetricType";
+import { type Shoe } from "~/types/Shoe/Shoe";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
+import { type MetricType } from "~/types/MetricType/MetricType";
 import { formatShortDate } from "~/utils/formatDate";
 
 interface ShoeCardProps {

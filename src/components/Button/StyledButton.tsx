@@ -1,5 +1,5 @@
 import React from "react";
-import Button, { ButtonProps } from "@mui/material/Button";
+import Button, { type ButtonProps } from "@mui/material/Button";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
 
 const StyledButton: React.FC<ButtonProps> = (props) => {

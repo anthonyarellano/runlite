@@ -47,10 +47,10 @@ export default function FileDropZone() {
     (acceptedFiles: DropzoneFile[]) => {
       const [acceptedFile] = acceptedFiles;
       validateUserFile(acceptedFile)
-        .then((data) => {
+        .then(async (data) => {
           if (data.userFile && data.isValid) {
             // If user file is valid, index data for efficient lookups later
-            indexFromFile(acceptedFile as File);
+            await indexFromFile(acceptedFile as File);
             setValidFileAvailable(data.isValid);
             setName(data.userFile.name);
             setMetricType(data.userFile.metricType);
@@ -68,6 +68,8 @@ export default function FileDropZone() {
       setMetricType,
       setValidFileAvailable,
       setName,
+      indexFromFile,
+      router
     ]
   );
 

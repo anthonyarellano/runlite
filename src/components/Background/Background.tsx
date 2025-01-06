@@ -1,7 +1,7 @@
 import React, { type PropsWithChildren } from "react";
-import { AlignItemsValues } from "~/types/AlignItems/AlignItemsValues";
-import { JustifyContentValues } from "~/types/JustifyContent/JustifyContentValues";
 import * as stylex from "@stylexjs/stylex";
+import { type AlignItemsValues } from "~/types/AlignItems/AlignItemsValues";
+import { type JustifyContentValues } from "~/types/JustifyContent/JustifyContentValues";
 
 interface BackgroundProps extends PropsWithChildren {
   alignItems?: AlignItemsValues;

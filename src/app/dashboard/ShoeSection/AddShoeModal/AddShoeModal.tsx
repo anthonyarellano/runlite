@@ -5,7 +5,7 @@ import Divider from "~/components/Card/Divider";
 import CardTitle from "~/components/Card/CardTitle";
 import StyledButton from "~/components/Button/StyledButton";
 import ModalContentContainer from "~/components/Modal/ModalContentContainer";
-import { Shoe } from "~/types/Shoe/Shoe";
+import { type Shoe } from "~/types/Shoe/Shoe";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { Fade, Modal } from "@mui/material";
 import { v4 as uuidv4 } from "uuid";
