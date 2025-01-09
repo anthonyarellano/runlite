@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import { RunTrackingStoreProvider } from "~/providers/RunTrackingStoreProvider";
 import "~/styles/globals.css";
 
@@ -15,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script src="http://localhost:8097"></script>
+        <Script src="http://localhost:8097" />
       </head>
       <body>
         <RunTrackingStoreProvider>{children}</RunTrackingStoreProvider>
