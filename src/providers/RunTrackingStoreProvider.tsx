@@ -19,7 +19,7 @@ export interface RunTrackingStoreProviderProps {
 export const RunTrackingStoreProvider = ({
   children,
 }: RunTrackingStoreProviderProps) => {
-  const storeRef = useRef<StoreApi<RunTrackingStore>>();
+  const storeRef = useRef<StoreApi<RunTrackingStore>>(undefined);
   if (!storeRef.current) {
     storeRef.current = createRunTrackingStore(initRunTrackingStore());
   }
