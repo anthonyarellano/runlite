@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import { LocaleProvider } from '~/contexts/LocaleContext';
 import { RunTrackingStoreProvider } from "~/providers/RunTrackingStoreProvider";
 import "~/styles/globals.css";
 
@@ -19,7 +20,10 @@ export default function RootLayout({
         <Script src="http://localhost:8097" />
       </head>
       <body>
-        <RunTrackingStoreProvider>{children}</RunTrackingStoreProvider>
+        <LocaleProvider>
+
+          <RunTrackingStoreProvider>{children}</RunTrackingStoreProvider>
+        </LocaleProvider>
       </body>
     </html>
   );
