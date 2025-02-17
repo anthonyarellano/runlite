@@ -4,7 +4,7 @@ import Divider from "~/components/Card/Divider";
 import CardTitle from "~/components/Card/CardTitle";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { useTranslation } from "~/hooks/useTranslation";
-import { SECTION_TITLES } from "~/constants/ui-text";
+import { SECTION_TITLE } from "~/constants/ui-text";
 
 export default function ActivitySection() {
   const { t } = useTranslation();
@@ -12,7 +12,7 @@ export default function ActivitySection() {
     <Card backgroundColor={ThemeColors.PRIMARY}>
       <Stack direction="column" justifyContent="flex-start">
         <CardTitle color={ThemeColors.WHITE}>
-          {t(SECTION_TITLES.ACTIVITIES)}
+          {t(SECTION_TITLE.ACTIVITIES)}
         </CardTitle>
         {/* TODO: Add Activity UI */}
       </Stack>

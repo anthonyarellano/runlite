@@ -9,7 +9,7 @@ import AddShoeModal from "./AddShoeModal/AddShoeModal";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import { useTranslation } from "~/hooks/useTranslation";
-import { SECTION_TITLES } from "~/constants/ui-text";
+import { BUTTON_TEXT, SECTION_TITLE } from "~/constants/ui-text";
 
 export default function ShoeSection() {
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ export default function ShoeSection() {
       <Stack direction="column" justifyContent="flex-start">
         <Stack justifyContent="space-between">
           <CardTitle color={ThemeColors.WHITE}>
-            {t(SECTION_TITLES.SHOES)}
+            {t(SECTION_TITLE.SHOES)}
           </CardTitle>
           <StyledButton
             sx={{ maxHeight: "2.5rem" }}
@@ -34,7 +34,7 @@ export default function ShoeSection() {
             variant="contained"
             onClick={() => setModalOpen(true)}
           >
-            Create new shoe
+            {t(BUTTON_TEXT.CREATE_NEW_SHOE)}
           </StyledButton>
         </Stack>
         <Divider color={ThemeColors.SECONDARY} />

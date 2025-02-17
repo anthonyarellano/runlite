@@ -17,6 +17,8 @@ import { initialUserFile } from "~/types/UserFile/UserFile";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
 import StyledButton from "~/components/Button/StyledButton";
+import { useTranslation } from "~/hooks/useTranslation";
+import { HEADING } from "~/constants/ui-text";
 
 interface GenerateFileFormProps {
   fadeIn: boolean;
@@ -29,6 +31,7 @@ const styles = stylex.create({
 });
 
 export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
+  const { t } = useTranslation();
   const {
     setFileDownload,
     setFileName,
@@ -83,11 +86,11 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
       backgroundColor={ThemeColors.GLASS}
     >
       <CardTitle color={ThemeColors.WHITE}>
-        Enter some{" "}
+        {t(HEADING.INFORMATION_PROMPT.PREFIX)}{" "}
         <span {...stylex.props(styles.secondaryText(ThemeColors.SECONDARY))}>
-          information
+          {t(HEADING.INFORMATION_PROMPT.HIGHLIGHT)}
         </span>{" "}
-        to get started 🚀
+        {t(HEADING.INFORMATION_PROMPT.SUFFIX)}
       </CardTitle>
       <Divider color={ThemeColors.WHITE} />
       <Fade in={fadeIn} timeout={3000}>

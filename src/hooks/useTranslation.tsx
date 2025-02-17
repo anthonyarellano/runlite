@@ -5,6 +5,7 @@ export function useTranslation() {
   const { locale } = useLocale();
 
   const t = (key: string) => {
+    console.log(translations[locale][key as keyof (typeof translations)["en"]]);
     return (
       translations[locale][key as keyof (typeof translations)["en"]] || key
     );
