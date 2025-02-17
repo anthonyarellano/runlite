@@ -1,6 +1,6 @@
 export const translations = {
-    en: {
-        'activities.title': 'Activities',
-        'shoes.title': 'Shoes'
-    }
+  en: {
+    "activities.title": "Activities",
+    "shoes.title": "Shoes",
+  },
 } as const;

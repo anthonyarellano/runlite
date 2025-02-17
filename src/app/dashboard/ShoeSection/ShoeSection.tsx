@@ -25,7 +25,9 @@ export default function ShoeSection() {
       <AddShoeModal open={modalOpen} onClose={() => setModalOpen(false)} />
       <Stack direction="column" justifyContent="flex-start">
         <Stack justifyContent="space-between">
-          <CardTitle color={ThemeColors.WHITE}>{t(SECTION_TITLES.SHOES)}</CardTitle>
+          <CardTitle color={ThemeColors.WHITE}>
+            {t(SECTION_TITLES.SHOES)}
+          </CardTitle>
           <StyledButton
             sx={{ maxHeight: "2.5rem" }}
             size="small"

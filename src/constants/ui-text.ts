@@ -1,4 +1,4 @@
 export const SECTION_TITLES = {
-    ACTIVITIES: 'activities.title',
-    SHOES: 'shoes.title'
-}
+  ACTIVITIES: "activities.title",
+  SHOES: "shoes.title",
+};

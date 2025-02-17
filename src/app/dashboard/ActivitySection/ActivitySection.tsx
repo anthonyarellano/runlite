@@ -11,7 +11,9 @@ export default function ActivitySection() {
   return (
     <Card backgroundColor={ThemeColors.PRIMARY}>
       <Stack direction="column" justifyContent="flex-start">
-        <CardTitle color={ThemeColors.WHITE}>{t(SECTION_TITLES.ACTIVITIES)}</CardTitle>
+        <CardTitle color={ThemeColors.WHITE}>
+          {t(SECTION_TITLES.ACTIVITIES)}
+        </CardTitle>
         {/* TODO: Add Activity UI */}
       </Stack>
       <Divider color={ThemeColors.SECONDARY} />
