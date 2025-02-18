@@ -39,7 +39,7 @@ export default function GenerateFile() {
   return (
     <Link href="/generate-file">
       <button {...stylex.props(styles.fileContainer(ThemeColors.WHITE))}>
-        {t(BUTTON_TEXT.GENERATE_FILE)} <AddIcon />
+        {t(BUTTON_TEXT.GENERATE_FILE.DEFAULT)} <AddIcon />
       </button>
     </Link>
   );
