@@ -4,7 +4,7 @@ import React from "react";
 import Fade from "~/components/Transitions/Fade";
 import Card from "~/components/Card/Card";
 import Stack from "~/components/Stack/Stack";
-import RunSection from "./RunSection/RunSection";
+import ActivitySection from "./ActivitySection/ActivitySection";
 import Background from "~/components/Background/Background";
 import ShoeSection from "./ShoeSection/ShoeSection";
 import SectionToggle from "./SectionToggle/SectionToggle";
@@ -15,6 +15,7 @@ import { getGreeting } from "~/utils/getGreeting";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
 import { NotificationProvider } from "~/providers/NotificationProvider";
+import { SECTIONS } from "~/constants/sections";
 
 const styles = stylex.create({
   baseText: {
@@ -90,8 +91,8 @@ export default function Home() {
                 />
               </Stack>
             </Card>
-            {sectionValue === "shoes" && <ShoeSection />}
-            {sectionValue === "runs" && <RunSection />}
+            {sectionValue === SECTIONS.SHOES && <ShoeSection />}
+            {sectionValue === SECTIONS.ACTIVITIES && <ActivitySection />}
           </Stack>
         </Fade>
       </Background>

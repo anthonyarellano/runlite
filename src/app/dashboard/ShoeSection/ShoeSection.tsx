@@ -8,8 +8,11 @@ import StyledButton from "~/components/Button/StyledButton";
 import AddShoeModal from "./AddShoeModal/AddShoeModal";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
+import { useTranslation } from "~/hooks/useTranslation";
+import { BUTTON_TEXT, SECTION_TITLE } from "~/constants/ui-text";
 
 export default function ShoeSection() {
+  const { t } = useTranslation();
   const shoes = useRunTrackingStore((state) => state.shoes);
   const metricType = useRunTrackingStore((state) => state.metricType);
   // const getShoeData = useRunTrackingStore((state) => state.getShoeData);
@@ -22,14 +25,16 @@ export default function ShoeSection() {
       <AddShoeModal open={modalOpen} onClose={() => setModalOpen(false)} />
       <Stack direction="column" justifyContent="flex-start">
         <Stack justifyContent="space-between">
-          <CardTitle color={ThemeColors.WHITE}>Shoes</CardTitle>
+          <CardTitle color={ThemeColors.WHITE}>
+            {t(SECTION_TITLE.SHOES)}
+          </CardTitle>
           <StyledButton
             sx={{ maxHeight: "2.5rem" }}
             size="small"
             variant="contained"
             onClick={() => setModalOpen(true)}
           >
-            Create new shoe
+            {t(BUTTON_TEXT.CREATE_NEW_SHOE)}
           </StyledButton>
         </Stack>
         <Divider color={ThemeColors.SECONDARY} />

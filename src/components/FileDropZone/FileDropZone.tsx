@@ -8,6 +8,9 @@ import { useNotification } from "~/providers/NotificationProvider";
 import { validateUserFile } from "~/utils/validateUserFile";
 import { type DropzoneFile } from "~/types/Dropzone/DropzoneFile";
 import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
+import { useTranslation } from "~/hooks/useTranslation";
+import { BUTTON_TEXT } from "~/constants/ui-text";
+import { translations } from "~/locales/translations";
 
 const pulse = stylex.keyframes({
   "0%": { borderColor: "#fef08a", color: "#fef08a" },
@@ -38,10 +41,10 @@ const styles = stylex.create({
 
 export default function FileDropZone() {
   const router = useRouter();
+  const { t } = useTranslation();
   const { notifySuccess, notifyFailure } = useNotification();
-  const { setValidFileAvailable, setName, setMetricType, indexFromFile } = useRunTrackingStore(
-    (state) => state
-  );
+  const { setValidFileAvailable, setName, setMetricType, indexFromFile } =
+    useRunTrackingStore((state) => state);
 
   const onDrop = React.useCallback(
     (acceptedFiles: DropzoneFile[]) => {
@@ -69,7 +72,7 @@ export default function FileDropZone() {
       setValidFileAvailable,
       setName,
       indexFromFile,
-      router
+      router,
     ]
   );
 
@@ -82,7 +85,7 @@ export default function FileDropZone() {
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       <button {...stylex.props(styles.fileDropZone)}>
-        Drop / select file <UploadFileIcon />
+        {t(BUTTON_TEXT.DROP_SELECT_FILE)} <UploadFileIcon />
       </button>
     </div>
   );

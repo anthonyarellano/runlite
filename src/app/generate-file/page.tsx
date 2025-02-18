@@ -9,6 +9,8 @@ import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
 import Background from "~/components/Background/Background";
 import { ThemeColors } from "~/types/Colors/ThemeColors";
+import { useTranslation } from "~/hooks/useTranslation";
+import { HEADING } from "~/constants/ui-text";
 
 const stylexStyles = stylex.create({
   container: {
@@ -20,6 +22,7 @@ const stylexStyles = stylex.create({
 });
 
 export default function Home() {
+  const { t } = useTranslation();
   const { fileDownload } = useRunTrackingStore((state) => state);
   const [titleVisible, setTitleVisible] = React.useState(true);
 
@@ -45,13 +48,13 @@ export default function Home() {
             <div {...stylex.props(stylexStyles.container)}>
               <Stack spacing={10} justifyContent="center" alignItems="center">
                 <h1 className={styles.subTitle}>
-                  Generate a new file to track your{" "}
+                  {t(HEADING.GENERATE_FILE_INTRO)}{" "}
                   <span
                     {...stylex.props(
                       stylexStyles.secondarySpan(ThemeColors.SECONDARY)
                     )}
                   >
-                    running
+                    {t(HEADING.RUNNING)}
                   </span>
                 </h1>
                 <img

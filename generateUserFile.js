@@ -20,7 +20,7 @@ const createFile = () => {
     try {
         // Generate shoe objects
         const shoes = [];
-        for (let i = 0; i < 100000; i++) {
+        for (let i = 0; i < 5; i++) {
             const newShoeId = `shoe-${Date.now()}-${i}`;
             shoes.push(generateShoe(newShoeId));
         }

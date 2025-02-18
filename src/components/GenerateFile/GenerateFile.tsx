@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import * as stylex from "@stylexjs/stylex";
+import { useTranslation } from "~/hooks/useTranslation";
+import { BUTTON_TEXT } from "~/constants/ui-text";
 
 const pulse = stylex.keyframes({
   "0%": { borderColor: "#FEE715", color: "#FEE715" },
@@ -33,10 +35,11 @@ const styles = stylex.create({
 });
 
 export default function GenerateFile() {
+  const { t } = useTranslation();
   return (
     <Link href="/generate-file">
       <button {...stylex.props(styles.fileContainer(ThemeColors.WHITE))}>
-        Generate new file <AddIcon />
+        {t(BUTTON_TEXT.GENERATE_FILE.DEFAULT)} <AddIcon />
       </button>
     </Link>
   );
