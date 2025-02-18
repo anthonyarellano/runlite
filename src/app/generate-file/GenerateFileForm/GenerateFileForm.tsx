@@ -18,7 +18,7 @@ import { useRunTrackingStore } from "~/providers/RunTrackingStoreProvider";
 import * as stylex from "@stylexjs/stylex";
 import StyledButton from "~/components/Button/StyledButton";
 import { useTranslation } from "~/hooks/useTranslation";
-import { HEADING } from "~/constants/ui-text";
+import { BUTTON_TEXT, HEADING, INPUT } from "~/constants/ui-text";
 
 interface GenerateFileFormProps {
   fadeIn: boolean;
@@ -98,18 +98,18 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
           <Stack direction="column" spacing={20}>
             <Input
               required
-              label="What should we call you?"
+              label={t(INPUT.NAME_USERNAME.LABEL)}
               error={inputNameError}
               maxLength={50}
               helperText={
                 inputNameError
-                  ? "Name or username is required"
-                  : "Max characters: 50"
+                  ? t(INPUT.NAME_USERNAME.VALIDATION)
+                  : t(INPUT.NAME_USERNAME.HELPER_TEXT)
               }
               id="name-username-input"
               value={name}
               onChange={handleNameChange}
-              placeholder="Name or username *"
+              placeholder={t(INPUT.NAME_USERNAME.PLACEHOLDER)}
               color={ThemeColors.WHITE}
             />
             <FormControl>
@@ -117,7 +117,7 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
                 htmlFor="radio-button-group"
                 style={{ color: ThemeColors.WHITE }}
               >
-                Metric preference
+                {t(INPUT.METRIC_TYPE.LABEL)}
               </label>
               <RadioGroup
                 id="radio-button-group"
@@ -139,7 +139,7 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
                       }}
                     />
                   }
-                  label="mi (miles)"
+                  label={t(INPUT.METRIC_TYPE.OPTIONS.ONE.LABEL)}
                 />
                 <FormControlLabel
                   value="km"
@@ -153,7 +153,7 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
                       }}
                     />
                   }
-                  label="km (kilometers)"
+                  label={t(INPUT.METRIC_TYPE.OPTIONS.TWO.LABEL)}
                 />
               </RadioGroup>
             </FormControl>
@@ -162,7 +162,7 @@ export default function GenerateFileForm({ fadeIn }: GenerateFileFormProps) {
               variant="contained"
               onClick={generateAndDownloadJson}
             >
-              Generate file
+              {t(BUTTON_TEXT.GENERATE_FILE.CREATE_FORM)}
             </StyledButton>
           </Stack>
         </div>
